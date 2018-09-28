@@ -26,7 +26,7 @@ public class UploadDocController {
 
     @RequestMapping("/doc")
     public String uploadDoc (@RequestBody DocEntity docEntity) throws IOException {
-        Base64FileTool.saveBase64File(docEntity.getContent(), savepath);
+        Base64FileTool.saveBase64File(docEntity.getContent(), savepath + "/upload");
         return "success";
     }
 
