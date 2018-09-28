@@ -7,16 +7,10 @@
  */
 <template>
   <Form ref="checkMsgForm" :model="checkMsgForm" :rules="checkMsgRule">
-    <FormItem label="用户名" prop="name">
-      <Input type="text" v-model="checkMsgForm.name"></Input>
-    </FormItem>
-    <FormItem label="年龄" prop="age">
-      <Input type="text" v-model="checkMsgForm.age" number></Input>
-    </FormItem>
-    <FormItem label="头像" prop="headPic">
-      <SingleImgUpload id="head-pic-upload"
+    <FormItem label="文档" prop="document">
+      <doc-upload id="doc-upload"
                        :uploadUrl="uploadUrl"
-                       @imgInfo="handlePic" ></SingleImgUpload>
+                       @imgInfo="handlePic" ></doc-upload>
     </FormItem>
     <FormItem>
       <Button type="primary" @click="handleSubmit('checkMsgForm')">Submit</Button>
@@ -26,10 +20,11 @@
 </template>
 <script>
 import util from '@/libs/util';
+import docUpload from '@/components/doc-upload';
 export default {
   name: 'uploadForm',
   components: {
-    SingleImgUpload
+    docUpload
   },
   data () {
     const validateAge = (rule, value, callback) => {
