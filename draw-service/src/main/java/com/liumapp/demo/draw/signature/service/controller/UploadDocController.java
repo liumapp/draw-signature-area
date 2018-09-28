@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class UploadDocController {
 
     @RequestMapping("/doc")
-    public void uploadDoc (@RequestBody DocEntity docEntity) {
-        
+    public String uploadDoc (@RequestBody DocEntity docEntity) {
+        return "success";
     }
 
 }
