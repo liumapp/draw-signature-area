@@ -16,9 +16,11 @@
           <Step title="下载" content="绘制成功后供后端处理，在指定的区域上附加一张图片后下载最终PDF文件"></Step>
         </Steps>
         <upload-form v-if="current == 0" @setFormData="setFormData" @next="nextStep"></upload-form>
-        <first-check v-if="current == 1" @next="nextStep" @prev="prevStep" :formData="formData"></first-check>
-        <second-check v-if="current == 2" @next="nextStep" @prev="prevStep"></second-check>
-        <result v-if="current == 3"></result>
+        <draw-area v-else-if="current == 1" @next="nextStep" @prev="prevStep"></draw-area>
+        <download v-else-if="current == 2" @next="nextStep"></download>
+        <div v-else>
+          wrong current value !
+        </div>
       </Card>
       </Col>
     </Row>
