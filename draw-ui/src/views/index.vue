@@ -26,6 +26,6 @@
 </template>
 <script>
 export default {
-  name: 'Index'
+  name: 'index'
 }
 </script>
