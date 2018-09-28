@@ -1,5 +1,7 @@
 package com.liumapp.demo.draw.signature.service.controller;
 
+import com.liumapp.demo.draw.signature.service.entity.DocEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class UploadDocController {
 
     @RequestMapping("/doc")
-    public void uploadDoc () {
-
+    public void uploadDoc (@RequestBody DocEntity docEntity) {
+        
     }
 
 }
