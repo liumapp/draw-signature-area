@@ -25,7 +25,31 @@
   </div>
 </template>
 <script>
+import util from '@/libs/util';
+import uploadForm from '@/components/upload-form';
+import drawArea from '@/components/draw-area';
+import download from '@/components/download';
 export default {
-  name: 'index'
+  name: 'index',
+  components: {
+    uploadForm, drawArea, download
+  },
+  data () {
+    return {
+      current: 0,
+      formData: {}
+    }
+  },
+  methods: {
+    setFormData (data) {
+      this.formData = data;
+    },
+    nextStep () {
+      this.current++;
+    },
+    prevStep () {
+      this.current--;
+    }
+  }
 }
 </script>
