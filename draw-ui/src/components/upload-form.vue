@@ -9,11 +9,11 @@
   <div class="upload-form">
     <Row>
       <Col span="18" offset="9">
-      <Form ref="checkMsgForm" :model="checkMsgForm" :rules="checkMsgRule">
+      <Form ref="checkMsgForm" :model="checkMsgForm">
         <FormItem label="文档" prop="document">
           <doc-upload id="doc-upload"
                       :uploadUrl="uploadUrl"
-                      @imgInfo="doc" ></doc-upload>
+                      @imgInfo="handleDoc" ></doc-upload>
         </FormItem>
         <FormItem>
           <Button type="primary" @click="handleSubmit('checkMsgForm')">Submit</Button>
@@ -57,8 +57,8 @@ export default {
     handleReset (name) {
       this.$refs[name].resetFields();
     },
-    handlePic (file) {
-      this.checkMsgForm.headPic=file.name;
+    handleDoc (file) {
+      this.checkMsgForm.doc=file;
     }
   }
 }

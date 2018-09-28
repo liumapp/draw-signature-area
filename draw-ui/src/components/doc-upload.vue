@@ -33,6 +33,7 @@ export default {
       this.$emit('imgInfo', file);
     },
     handleBeforeUpload (file) {
+      console.log(file);
       const format = file.type === 'image/jpeg' || file.type === 'image/png';
       const size = file.size / 1024 / 1024 < 2;
 

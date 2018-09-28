@@ -1,9 +1,13 @@
 package com.liumapp.demo.draw.signature.service.controller;
 
 import com.liumapp.demo.draw.signature.service.entity.DocEntity;
+import com.liumapp.qtools.file.base64.Base64FileTool;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
 
 /**
  * file UploadDocController.java
@@ -17,8 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UploadDocController {
 
+    @Value("${liumapp.savepath}")
+    private String savepath;
+
     @RequestMapping("/doc")
-    public String uploadDoc (@RequestBody DocEntity docEntity) {
+    public String uploadDoc (@RequestBody DocEntity docEntity) throws IOException {
+        Base64FileTool.saveBase64File(docEntity.getContent(), savepath);
         return "success";
     }
 

@@ -19,7 +19,7 @@ util.title = function (title) {
   window.document.title = title;
 };
 
-const ajaxUrl = 'http://localhost:2020/';
+const ajaxUrl = 'http://localhost:4040/';
 
 util.ajaxUrl = ajaxUrl;
 

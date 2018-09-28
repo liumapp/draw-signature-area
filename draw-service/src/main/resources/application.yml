@@ -4,3 +4,6 @@ spring:
   application:
     name: draw-service
 
+liumapp:
+  savepath: ./data/
+
