@@ -6,17 +6,23 @@
  * @date 2018/9/28
  */
 <template>
-  <Form ref="checkMsgForm" :model="checkMsgForm" :rules="checkMsgRule">
-    <FormItem label="文档" prop="document">
-      <doc-upload id="doc-upload"
-                       :uploadUrl="uploadUrl"
-                       @imgInfo="handlePic" ></doc-upload>
-    </FormItem>
-    <FormItem>
-      <Button type="primary" @click="handleSubmit('checkMsgForm')">Submit</Button>
-      <Button type="ghost" @click="handleReset('checkMsgForm')">Reset</Button>
-    </FormItem>
-  </Form>
+  <div class="upload-form">
+    <Row>
+      <Col span="18" offset="9">
+      <Form ref="checkMsgForm" :model="checkMsgForm" :rules="checkMsgRule">
+        <FormItem label="文档" prop="document">
+          <doc-upload id="doc-upload"
+                      :uploadUrl="uploadUrl"
+                      @imgInfo="doc" ></doc-upload>
+        </FormItem>
+        <FormItem>
+          <Button type="primary" @click="handleSubmit('checkMsgForm')">Submit</Button>
+          <Button type="ghost" @click="handleReset('checkMsgForm')">Reset</Button>
+        </FormItem>
+      </Form>
+      </Col>
+    </Row>
+  </div>
 </template>
 <script>
 import util from '@/libs/util';
@@ -27,47 +33,10 @@ export default {
     docUpload
   },
   data () {
-    const validateAge = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error('Age cannot be empty'));
-      }
-      // 模拟异步验证效果
-      setTimeout(() => {
-        if (!Number.isInteger(value)) {
-          callback(new Error('Please enter a numeric value'));
-        } else {
-          if (value < 18) {
-            callback(new Error('Must be over 18 years of age'));
-          } else {
-            callback();
-          }
-        }
-      }, 200);
-    };
-
     return {
       uploadUrl: util.ajaxUrl + 'file/',
       checkMsgForm: {
-        name: '用户名称呢',
-        age: 22,
-        headPic: ''
-      },
-      checkMsgRule: {
-        name: [
-          {
-            type: 'string',
-            min: 5,
-            max: 10,
-            message: 'the username size shall be no more than 10 chars and no less than 5 chars ',
-            trigger: 'blur'
-          }
-        ],
-        age: [
-          {
-            validator: validateAge,
-            trigger: 'blur'
-          }
-        ]
+        doc: ''
       }
     }
   },
@@ -94,5 +63,9 @@ export default {
   }
 }
 
-}
 </script>
+<style lang="less">
+  .upload-form {
+    margin-top: 30px;
+  }
+</style>
