@@ -13,7 +13,7 @@
         <FormItem label="文档" prop="document">
           <doc-upload id="doc-upload"
                       :uploadUrl="uploadUrl"
-                      @imgInfo="handleDoc" ></doc-upload>
+                      @docInfo="handleDoc" ></doc-upload>
         </FormItem>
         <FormItem>
           <Button type="primary" @click="handleSubmit('checkMsgForm')">下一步</Button>
@@ -58,8 +58,8 @@ export default {
         }
       });*/
     },
-    handleDoc (file) {
-      this.checkMsgForm.doc=file;
+    handleDoc (fileInfo) {
+      this.checkMsgForm.doc = fileInfo;
     }
   }
 }

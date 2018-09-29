@@ -23,19 +23,15 @@ export default {
   ],
   data () {
     return {
-      url: ''
+      url: '',
+      fileInfo: null
     };
   },
   created () {
     this.url = this.uploadUrl;
   },
   methods: {
-    handleSuccess (response, file) {
-      this.$Message.success('上传成功!');
-      this.$emit('imgInfo', file);
-    },
     handleBeforeUpload (file) {
-      console.log(file);
       const format = file.type === 'application/msword';
       const size = file.size / 1024 / 1024 < 10;
 
@@ -47,6 +43,7 @@ export default {
       }
 
       this.handleFileToBase64(file);
+      this.$emit('docInfo', fileInfo);
       return false;
     },
     handleFileToBase64 (file) {
@@ -54,21 +51,9 @@ export default {
       let _vue = this;
       reader.readAsDataURL(file);
       reader.onload = function () {
-        _vue.fileList.push({name: file.name, content: reader.result, convertId: _vue.cid});
-        _vue.readyUploadFile.push({name: file.name});
+        _vue.fileInfo = {name: file.name, content: reader.result};
       }
-    },
-    submitPic () {
-      if (!this.isEmpty()) {
-        util.post('upload/multybase64', this.fileList).then(res => {
-          this.$Message.success('file upload success!');
-          this.$emit('setDocData',this.handleDocList());
-          this.$emit('next');
-        });
-      } else {
-        this.$Message.error('请至少上传一个doc文件');
-      }
-    },
+    }
   }
 
 }
