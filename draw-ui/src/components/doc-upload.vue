@@ -44,7 +44,28 @@ export default {
         this.$Message.error('上传文档大小不能超过 10MB!')
       }
       return format && size;
-    }
+    },
+    handleFileToBase64 (file) {
+      let reader = new FileReader();
+      let _vue = this;
+      reader.readAsDataURL(file);
+      reader.onload = function () {
+        _vue.fileList.push({name: file.name, content: reader.result, convertId: _vue.cid});
+        _vue.readyUploadFile.push({name: file.name});
+      }
+      return false;
+    },
+    submitPic () {
+      if (!this.isEmpty()) {
+        util.post('upload/multybase64', this.fileList).then(res => {
+          this.$Message.success('file upload success!');
+          this.$emit('setDocData',this.handleDocList());
+          this.$emit('next');
+        });
+      } else {
+        this.$Message.error('请至少上传一个doc文件');
+      }
+    },
   }
 
 }

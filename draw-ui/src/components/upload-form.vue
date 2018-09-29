@@ -41,8 +41,11 @@ export default {
   },
   methods: {
     handleSubmit (name) {
-      console.log(this.checkMsgForm);
+      console.log(this.checkMsgForm.doc);
       console.log(this.checkMsgForm.doc == null);
+
+//      this.$emit('setFormData', this.checkMsgForm);
+//      this.$emit('next');
       /*this.$refs[name].validate((valid) => {
         if (valid) {
           util.post('/info', this.checkMsgForm).then(res => {
