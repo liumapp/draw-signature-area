@@ -34,7 +34,7 @@ export default {
   },
   data () {
     return {
-      uploadUrl: util.ajaxUrl + 'file/',
+      uploadUrl: util.ajaxUrl + 'upload/doc',
       checkMsgForm: {
         doc: ''
       }
