@@ -6,7 +6,9 @@
  * @date 2018/9/28
  */
 <template>
-  <Upload :action="url"
+  <Upload
+          accept=".doc, .docx"
+          :action="url"
           :on-success="handleSuccess"
           :before-upload="handleBeforeUpload">
     <Button type="ghost" icon="ios-cloud-upload-outline">上传文件</Button>
@@ -43,7 +45,9 @@ export default {
       if (!size) {
         this.$Message.error('上传文档大小不能超过 10MB!')
       }
-      return format && size;
+
+      this.handleFileToBase64(file);
+      return false;
     },
     handleFileToBase64 (file) {
       let reader = new FileReader();
@@ -53,7 +57,6 @@ export default {
         _vue.fileList.push({name: file.name, content: reader.result, convertId: _vue.cid});
         _vue.readyUploadFile.push({name: file.name});
       }
-      return false;
     },
     submitPic () {
       if (!this.isEmpty()) {
