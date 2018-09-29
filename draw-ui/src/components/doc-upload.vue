@@ -34,14 +34,14 @@ export default {
     },
     handleBeforeUpload (file) {
       console.log(file);
-      const format = file.type === 'image/jpeg' || file.type === 'image/png';
-      const size = file.size / 1024 / 1024 < 2;
+      const format = file.type === 'application/msword';
+      const size = file.size / 1024 / 1024 < 10;
 
       if (!format) {
-        this.$Message.error('上传头像图片只能是 JPG/PNG 格式!')
+        this.$Message.error('上传文档只能是 DOC 格式!')
       }
       if (!size) {
-        this.$Message.error('上传头像图片大小不能超过 2MB!')
+        this.$Message.error('上传文档大小不能超过 10MB!')
       }
       return format && size;
     }
