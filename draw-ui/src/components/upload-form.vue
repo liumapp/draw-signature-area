@@ -16,8 +16,7 @@
                       @imgInfo="handleDoc" ></doc-upload>
         </FormItem>
         <FormItem>
-          <Button type="primary" @click="handleSubmit('checkMsgForm')">Submit</Button>
-          <Button type="ghost" @click="handleReset('checkMsgForm')">Reset</Button>
+          <Button type="primary" @click="handleSubmit('checkMsgForm')">下一步</Button>
         </FormItem>
       </Form>
       </Col>
@@ -36,13 +35,15 @@ export default {
     return {
       uploadUrl: util.ajaxUrl + 'upload/doc',
       checkMsgForm: {
-        doc: ''
+        doc: null
       }
     }
   },
   methods: {
     handleSubmit (name) {
-      this.$refs[name].validate((valid) => {
+      console.log(this.checkMsgForm);
+      console.log(this.checkMsgForm.doc == null);
+      /*this.$refs[name].validate((valid) => {
         if (valid) {
           util.post('/info', this.checkMsgForm).then(res => {
             this.$Message.success('Success!');
@@ -52,10 +53,7 @@ export default {
         } else {
           this.$Message.error('Fail!');
         }
-      });
-    },
-    handleReset (name) {
-      this.$refs[name].resetFields();
+      });*/
     },
     handleDoc (file) {
       this.checkMsgForm.doc=file;
