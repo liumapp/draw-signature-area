@@ -5,7 +5,7 @@
   "author": "liumapp <liumapp.com@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --content-base ./ --host 0.0.0.0 --open --inline --hot --compress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "build": "node build/build.js"
   },
