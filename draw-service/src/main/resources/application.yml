@@ -5,5 +5,5 @@ spring:
     name: draw-service
 
 liumapp:
-  savepath: ./data/
+  savepath: /usr/local/tomcat/project/draw-signature-area/data/
 

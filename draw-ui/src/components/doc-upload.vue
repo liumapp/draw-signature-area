@@ -6,13 +6,18 @@
  * @date 2018/9/28
  */
 <template>
+<div>
   <Upload
-          accept=".doc, .docx"
-          :action="url"
-          :on-success="handleSuccess"
-          :before-upload="handleBeforeUpload">
+    accept=".doc, .docx"
+    :action="url"
+    :before-upload="handleBeforeUpload">
     <Button type="ghost" icon="ios-cloud-upload-outline">上传文件</Button>
   </Upload>
+  <div>
+    您选择的文件为：{{ fileInfo.name }}
+  </div>
+</div>
+
 </template>
 <script>
 import util from '@/libs/util.js';
@@ -24,7 +29,7 @@ export default {
   data () {
     return {
       url: '',
-      fileInfo: null
+      fileInfo: {}
     };
   },
   created () {
@@ -43,7 +48,7 @@ export default {
       }
 
       this.handleFileToBase64(file);
-      this.$emit('docInfo', fileInfo);
+      this.$emit('docInfo', this.fileInfo);
       return false;
     },
     handleFileToBase64 (file) {

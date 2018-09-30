@@ -13,13 +13,25 @@ import org.springframework.stereotype.Component;
 @Component
 public class DocEntity {
 
+    private String name;
+
     private String content;
 
     public DocEntity() {
     }
 
-    public DocEntity(String content) {
+    public DocEntity(String name, String content) {
+        this.name = name;
         this.content = content;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public DocEntity setName(String name) {
+        this.name = name;
+        return this;
     }
 
     public String getContent() {
