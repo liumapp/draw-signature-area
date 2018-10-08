@@ -24,5 +24,6 @@
 
 	<modules>
 		<module>draw-service</module>
+		<module>synch-service</module>
 	</modules>
 </project>
