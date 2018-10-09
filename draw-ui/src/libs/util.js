@@ -3,25 +3,26 @@
  * @author liumapp
  * @email liumapp.com@gmail.com
  * @homepage http://www.liumapp.com
- * @date 2018/9/28
+ * @date 7/2/18
  */
-
-
 import axios from 'axios';
 import { Message } from 'iview';
 
 let util = {
 
 };
-
 util.title = function (title) {
-  title = title || 'steps demo';
+  title = title || 'editor demo';
   window.document.title = title;
 };
 
 const ajaxUrl = 'http://localhost:4040/';
+const onlineSocketUrl = 'ws://localhost:4040/onlineSocket';
+const convertingResultSocket = 'ws://localhost:4040/convertingSocket';
 
 util.ajaxUrl = ajaxUrl;
+util.onlineSocketUrl = onlineSocketUrl;
+util.convertingResultSocket = convertingResultSocket;
 
 util.ajax = axios.create({
   baseURL: ajaxUrl,
@@ -60,6 +61,14 @@ util.checkStatus = function checkStatus (response) {
     status: -404,
     msg: '网络异常'
   };
+};
+
+util.randNumber = function (n) {
+  let rnd = "";
+  for (let i = 0 ; i < n ; i++) {
+    rnd += Math.floor(Math.random()*10);
+  }
+  return rnd;
 };
 
 export default util;
