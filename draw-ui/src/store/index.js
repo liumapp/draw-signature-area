@@ -26,6 +26,10 @@ function getFilterArray (array) {
 }
 
 const store = new Vuex.Store({
+  state: {
+    drawFile: null,
+    docList: []
+  },
 
 });
 
