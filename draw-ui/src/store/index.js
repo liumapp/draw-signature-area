@@ -27,12 +27,16 @@ function getFilterArray (array) {
 
 const store = new Vuex.Store({
   state: {
-    drawFile: null,
+    //the document currently being draw
+    drawIndex: null,
     docList: []
   },
   getters: {
     docs: state => {
       return state.docList;
+    },
+    drawIndex: state => {
+      return state.drawIndex;
     }
   },
   mutations: {
@@ -41,6 +45,9 @@ const store = new Vuex.Store({
     },
     UPDATE_DOC (state, data, index) {
       state.docList[index] = data;
+    },
+    UPDATE_DRAW_INDEX (state, data) {
+      state.drawIndex = data;
     }
   },
   actions: {
@@ -49,6 +56,9 @@ const store = new Vuex.Store({
     },
     updateDoc (context, data, index) {
       context.commit('UPDATE_DOC', data, index);
+    },
+    choiceDocToDraw (context, index) {
+      context.commit('UPDATE_DRAW_INDEX', index);
     }
   }
 });
