@@ -41,7 +41,7 @@ import resultColumn from '@/column/resultsColumn'
 export default {
   name: 'converting',
   props: [
-    'convertId', 'docList'
+    'convertId'
   ],
   data () {
     return {
@@ -64,14 +64,13 @@ export default {
   methods: {
     initTable () {
       this.tableColumn = resultColumn.tableResultsColumn;
-      this.tableData = this.docList;
+      this.tableData = this.$store.getters.docs;
       this.tableColumn.forEach (item => {
         if (item.handle) {
           item.render = (h, params) => {
             const row = params.row;
             const results = [];
             if (row.status == status.CONVERTED_SUCCESS) {
-//              results.push(this.getDownloadButton(h, row));
               results.push(this.getDrawButton(h, row));
             } else {
 //           todo 转换失败的情况

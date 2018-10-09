@@ -16,8 +16,8 @@
           <Step title="绘制区域" content="后端转换为Pic后获取文件，并在其上绘制200px*100px矩形"></Step>
           <Step title="下载" content="绘制成功后供后端处理，在指定的区域上附加一张图片后下载最终PDF文件"></Step>
         </Steps>
-        <doc-upload v-if="current == 0" @next="nextStep" @setDocData="setDocData" :convertId="convertId"></doc-upload>
-        <converting v-else-if="current == 1" :docList="docList" @next="nextStep" :convertId="convertId"></converting>
+        <doc-upload v-if="current == 0" @next="nextStep" :convertId="convertId"></doc-upload>
+        <converting v-else-if="current == 1" @next="nextStep" :convertId="convertId"></converting>
         <draw-area v-else-if="current == 2" @next="nextStep" @prev="prevStep"></draw-area>
         <download v-else-if="current == 3" @next="nextStep"></download>
         <div v-else>
@@ -73,9 +73,6 @@ export default {
     },
     getMessage (event) {
       this.people = event.data;
-    },
-    setDocData (uploadList) {
-      this.docList = uploadList;
     },
     nextStep () {
       this.current++;

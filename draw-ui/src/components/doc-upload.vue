@@ -76,7 +76,7 @@ export default {
       if (!this.isEmpty()) {
         util.post('upload/multybase64', this.fileList).then(res => {
           this.$Message.success('file upload success!');
-          this.$emit('setDocData',this.handleDocList());
+          this.$store.dispatch('uploadDocList', this.handleDocList());
           this.$emit('next');
         });
       } else {

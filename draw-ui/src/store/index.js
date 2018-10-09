@@ -30,7 +30,21 @@ const store = new Vuex.Store({
     drawFile: null,
     docList: []
   },
-
+  getters: {
+    docs: state => {
+      return state.docList;
+    }
+  },
+  mutations: {
+    UPDATE_DOC_LIST (state, data) {
+      state.docList = data;
+    }
+  },
+  actions: {
+    uploadDocList (context, data) {
+      context.commit('UPDATE_DOC_LIST', data);
+    }
+  }
 });
 
 export default store;
