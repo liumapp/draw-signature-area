@@ -107,6 +107,7 @@ export default {
             _vue.tableData[key].status = status.CONVERTED_FAILD;
             this.$Message.error("convert failed");
           }
+          _vue.$store.dispatch('updateDoc', _vue.tableData[key], key);
         }
       });
     },

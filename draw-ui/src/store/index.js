@@ -38,11 +38,17 @@ const store = new Vuex.Store({
   mutations: {
     UPDATE_DOC_LIST (state, data) {
       state.docList = data;
+    },
+    UPDATE_DOC (state, data, index) {
+      state.docList[index] = data;
     }
   },
   actions: {
     uploadDocList (context, data) {
       context.commit('UPDATE_DOC_LIST', data);
+    },
+    updateDoc (context, data, index) {
+      context.commit('UPDATE_DOC', data, index);
     }
   }
 });
