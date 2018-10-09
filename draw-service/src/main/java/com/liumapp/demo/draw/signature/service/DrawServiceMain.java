@@ -1,7 +1,10 @@
 package com.liumapp.demo.draw.signature.service;
 
+import com.liumapp.qtools.starter.springboot.QtoolsSpringBootStarter;
+import com.liumapp.rabbitmq.RabbitMQOperatorMain;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Import;
 
 /**
  * file DrawServiceMain.java
@@ -12,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * date 2018/9/28
  */
 @SpringBootApplication
+@Import({RabbitMQOperatorMain.class, QtoolsSpringBootStarter.class})
 public class DrawServiceMain {
 
     public static void main (String[] args) {
