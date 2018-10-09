@@ -71,6 +71,13 @@
       <version>v1.0.0</version>
     </dependency>
 
+    <!--convert pdf to img require-->
+    <dependency>
+      <groupId>com.liumapp.convert.img</groupId>
+      <artifactId>convert-pdf-to-img</artifactId>
+      <version>v1.1.0</version>
+    </dependency>
+
     <!--rabbit mq require-->
     <dependency>
       <groupId>com.liumapp.rabbitmq</groupId>

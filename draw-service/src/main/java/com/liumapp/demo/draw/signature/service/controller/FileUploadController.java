@@ -60,8 +60,8 @@ public class FileUploadController {
                 fileManager.save(file);
                 convertDocPattern.setFileIndex(index);
                 convertDocPattern.setConvertId(doc.getConvertId());
-                convertDocPattern.setDocPath(fileManager.getSavePath());
-                convertDocPattern.setPdfPath(fileManager.getSavePath());
+                convertDocPattern.setDocPath(fileManager.getSavePath() + "/upload/");
+                convertDocPattern.setPdfPath(fileManager.getSavePath() + "/pdf/");
                 convertDocPattern.setOriginalName(fileManager.getFileName());
                 convertDocPattern.setSaveName(fileManager.getFileName() + ".pdf");
                 convertDocPublisher.send(JSON.toJSONString(convertDocPattern));
