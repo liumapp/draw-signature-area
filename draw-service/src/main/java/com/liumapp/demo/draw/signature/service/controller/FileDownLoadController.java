@@ -1,6 +1,6 @@
 package com.liumapp.demo.draw.signature.service.controller;
 
-import com.liumapp.demo.draw.signature.service.util.FileManager;
+import com.liumapp.qtools.starter.springboot.file.FileManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.ResponseEntity;

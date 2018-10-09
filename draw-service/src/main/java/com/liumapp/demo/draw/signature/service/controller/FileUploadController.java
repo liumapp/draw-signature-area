@@ -5,7 +5,7 @@ import com.liumapp.demo.draw.signature.service.entity.DocEntity;
 import com.liumapp.demo.draw.signature.service.entity.MultyDocEntity;
 import com.liumapp.demo.draw.signature.service.queue.pattern.ConvertDocPattern;
 import com.liumapp.demo.draw.signature.service.queue.publisher.service.ConvertDocPublisher;
-import com.liumapp.demo.draw.signature.service.util.FileManager;
+import com.liumapp.qtools.starter.springboot.file.FileManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

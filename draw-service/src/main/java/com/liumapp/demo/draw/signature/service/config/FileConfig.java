@@ -1,6 +1,6 @@
 package com.liumapp.demo.draw.signature.service.config;
 
-import com.liumapp.demo.draw.signature.service.util.FileManager;
+import com.liumapp.qtools.starter.springboot.file.FileManager;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
