@@ -5,7 +5,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.liumapp.convert.doc.Doc2PDF;
 import com.liumapp.demo.draw.signature.service.config.ConvertConfig;
 import com.liumapp.demo.draw.signature.service.queue.pattern.ConvertDocPattern;
+import com.liumapp.demo.draw.signature.service.queue.pattern.ConvertPdfToPicPattern;
 import com.liumapp.demo.draw.signature.service.queue.pattern.QueueJobErrorInfoPattern;
+import com.liumapp.demo.draw.signature.service.queue.publisher.service.ConvertPdfToPicPublisher;
 import com.liumapp.demo.draw.signature.service.queue.publisher.service.QueueJobErrorInfoPublisher;
 import com.liumapp.demo.draw.signature.service.socket.ConvertingResultSocketServer;
 import org.slf4j.Logger;
@@ -31,6 +33,9 @@ public class ConverterConsumer {
 
     @Autowired
     private QueueJobErrorInfoPattern queueJobErrorInfoPattern;
+
+    @Autowired
+    private ConvertPdfToPicPublisher convertPdfToPicPublisher;
 
     private static Logger logger = LoggerFactory.getLogger(ConverterConsumer.class);
 

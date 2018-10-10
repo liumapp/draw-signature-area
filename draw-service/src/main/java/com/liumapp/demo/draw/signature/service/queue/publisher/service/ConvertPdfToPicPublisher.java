@@ -4,6 +4,7 @@ import com.liumapp.rabbitmq.publisher.BasicPublisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.support.CorrelationData;
+import org.springframework.stereotype.Service;
 
 /**
  * file ConvertPdfToPicPublisher.java
@@ -13,6 +14,7 @@ import org.springframework.amqp.rabbit.support.CorrelationData;
  * homepage http://www.liumapp.com
  * date 2018/10/9
  */
+@Service
 public class ConvertPdfToPicPublisher extends BasicPublisher {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());

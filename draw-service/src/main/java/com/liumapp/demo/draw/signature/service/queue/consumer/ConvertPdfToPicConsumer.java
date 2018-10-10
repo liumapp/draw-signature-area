@@ -36,7 +36,6 @@ public class ConvertPdfToPicConsumer {
             allPageConverter.setOutputPath(fileManager.getSavePath() + "/pic/");
             allPageConverter.convert();
             convertPdfToPicPattern.setPicNames(allPageConverter.getSavenames());
-            
         } catch (Exception e) {
             //转换失败
             e.printStackTrace();
