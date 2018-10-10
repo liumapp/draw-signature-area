@@ -2,6 +2,8 @@ package com.liumapp.demo.draw.signature.service.queue.pattern;
 
 import org.springframework.stereotype.Component;
 
+import java.util.LinkedList;
+
 /**
  * file ConvertPdfToPicPattern.java
  * author liumapp
@@ -13,6 +15,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConvertPdfToPicPattern extends ConvertDocPattern {
 
+    private LinkedList<String> picNames;
 
+    public LinkedList<String> getPicNames() {
+        return picNames;
+    }
+
+    public ConvertPdfToPicPattern setPicNames(LinkedList<String> picNames) {
+        this.picNames = picNames;
+        return this;
+    }
 
 }
