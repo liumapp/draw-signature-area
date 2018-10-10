@@ -45,7 +45,8 @@ public class ConverterConsumer {
         try {
             Thread.sleep(1500);
             doc2PDF.doc2pdf(docPattern.getPdfPath() + "/" + docPattern.getSaveName(), docPattern.getDocPath() + "/" + docPattern.getOriginalName());
-            ConvertingResultSocketServer.sendStatusMessage(responseJson(docPattern), docPattern.getConvertId());
+            convertPdfToPicPublisher.send(JSON.toJSONString(responseJson(docPattern)));
+//            ConvertingResultSocketServer.sendStatusMessage(responseJson(docPattern), docPattern.getConvertId());
         } catch (Exception e) {
             // send msg to convert doc result that convert failed.
             queueJobErrorInfoPattern.setServiceName(ConverterConsumer.class.toString());

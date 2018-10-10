@@ -4,8 +4,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.liumapp.demo.draw.signature.service.config.ConvertConfig;
 import com.liumapp.demo.draw.signature.service.queue.pattern.ConvertDocPattern;
+import com.liumapp.demo.draw.signature.service.queue.pattern.ConvertPdfToPicPattern;
 import com.liumapp.demo.draw.signature.service.queue.pattern.QueueJobErrorInfoPattern;
 import com.liumapp.demo.draw.signature.service.socket.ConvertingResultSocketServer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,11 +21,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class QueueJobErrorInfoConsumer {
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     public void handleError(String jsonObject) {
         QueueJobErrorInfoPattern queueJobErrorInfoPattern = JSON.parseObject(jsonObject, QueueJobErrorInfoPattern.class);
         if (queueJobErrorInfoPattern.getServiceName().equals(ConverterConsumer.class.toString())) {
             this.handleConvertError(queueJobErrorInfoPattern.getInfo());
+        } else if (queueJobErrorInfoPattern.getServiceName().equals(ConvertPdfToPicConsumer.class.toString())) {
+            this.handleConvertPdfToPicError(queueJobErrorInfoPattern.getInfo());
+        } else {
+            logger.error("can not find error service");
         }
+    }
+
+    private void handleConvertPdfToPicError (String info) {
+        ConvertPdfToPicPattern pdfToPicPattern = JSON.parseObject(info, ConvertPdfToPicPattern.class);
+        ConvertingResultSocketServer.sendStatusMessage(responseConvertJson(pdfToPicPattern), pdfToPicPattern.getConvertId());
     }
 
     private void handleConvertError (String info) {

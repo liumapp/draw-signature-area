@@ -1,9 +1,14 @@
 package com.liumapp.demo.draw.signature.service.queue.consumer;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.liumapp.convert.img.service.AllPageConverter;
+import com.liumapp.demo.draw.signature.service.config.ConvertConfig;
 import com.liumapp.demo.draw.signature.service.queue.pattern.ConvertDocPattern;
 import com.liumapp.demo.draw.signature.service.queue.pattern.ConvertPdfToPicPattern;
+import com.liumapp.demo.draw.signature.service.queue.pattern.QueueJobErrorInfoPattern;
+import com.liumapp.demo.draw.signature.service.queue.publisher.service.ConvertPdfToPicPublisher;
+import com.liumapp.demo.draw.signature.service.queue.publisher.service.QueueJobErrorInfoPublisher;
 import com.liumapp.demo.draw.signature.service.socket.ConvertingResultSocketServer;
 import com.liumapp.qtools.starter.springboot.file.FileManager;
 import org.slf4j.Logger;
@@ -25,6 +30,12 @@ public class ConvertPdfToPicConsumer {
     @Autowired
     private FileManager fileManager;
 
+    @Autowired
+    private QueueJobErrorInfoPattern queueJobErrorInfoPattern;
+
+    @Autowired
+    private QueueJobErrorInfoPublisher queueJobErrorInfoPublisher;
+
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public void process (String jsonPattern) {
@@ -39,7 +50,19 @@ public class ConvertPdfToPicConsumer {
         } catch (Exception e) {
             //转换失败
             e.printStackTrace();
+            queueJobErrorInfoPattern.setServiceName(ConverterConsumer.class.toString());
+            queueJobErrorInfoPattern.setErrorDesc("handle doc convert failed!");
+            queueJobErrorInfoPattern.setInfo(jsonPattern);
+            queueJobErrorInfoPublisher.send(JSON.toJSONString(queueJobErrorInfoPattern));
         }
+    }
+
+    private JSONObject responseJson (ConvertDocPattern docPattern) {
+        JSONObject object = new JSONObject();
+        object.put("index", docPattern.getFileIndex());
+        object.put("savename", docPattern.getSaveName());
+        object.put("status", ConvertConfig.ConvertStatus.CONVERTED_SUCCESS);
+        return object;
     }
 
 }
