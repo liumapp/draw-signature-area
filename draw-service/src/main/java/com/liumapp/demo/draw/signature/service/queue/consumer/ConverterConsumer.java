@@ -48,6 +48,7 @@ public class ConverterConsumer {
             convertPdfToPicPublisher.send(JSON.toJSONString(responseJson(docPattern)));
 //            ConvertingResultSocketServer.sendStatusMessage(responseJson(docPattern), docPattern.getConvertId());
         } catch (Exception e) {
+            logger.info(e.getMessage());
             // send msg to convert doc result that convert failed.
             queueJobErrorInfoPattern.setServiceName(ConverterConsumer.class.toString());
             queueJobErrorInfoPattern.setErrorDesc("handle doc convert failed!");

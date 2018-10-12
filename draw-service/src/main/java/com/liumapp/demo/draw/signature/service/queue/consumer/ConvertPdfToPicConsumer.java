@@ -59,10 +59,8 @@ public class ConvertPdfToPicConsumer {
 
     private JSONObject responseJson (ConvertDocPattern docPattern) {
         JSONObject object = new JSONObject();
-        object.put("index", docPattern.getFileIndex());
         object.put("picNames", docPattern.getSaveName());
         object.put("picNumbers", 0);
-        object.put("status", ConvertConfig.ConvertStatus.CONVERTED_SUCCESS);
         return object;
     }
 
