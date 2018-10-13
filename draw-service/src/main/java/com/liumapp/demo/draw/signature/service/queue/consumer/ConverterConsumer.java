@@ -43,7 +43,9 @@ public class ConverterConsumer {
         ConvertDocPattern docPattern = JSON.parseObject(jsonPattern, ConvertDocPattern.class);
         logger.info("convert job begin , doc path is : " + docPattern.getDocPath());
         try {
-            doc2PDF.doc2pdf(docPattern.getPdfPath() + "/" + docPattern.getSaveName(), docPattern.getDocPath() + "/" + docPattern.getOriginalName());
+            String pdfFilePath = docPattern.getPdfPath() + "/" + docPattern.getSaveName();
+            doc2PDF.doc2pdf(pdfFilePath, docPattern.getDocPath() + "/" + docPattern.getOriginalName());
+            docPattern.setPdfPath(pdfFilePath);
             convertPdfToPicPublisher.send(JSON.toJSONString(docPattern));
         } catch (Exception e) {
             logger.info(e.getMessage());
