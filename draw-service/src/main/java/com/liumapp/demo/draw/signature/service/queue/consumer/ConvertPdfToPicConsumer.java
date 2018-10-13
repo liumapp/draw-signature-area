@@ -3,6 +3,7 @@ package com.liumapp.demo.draw.signature.service.queue.consumer;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.liumapp.convert.img.service.AllPageConverter;
+import com.liumapp.demo.draw.signature.service.config.ConvertConfig;
 import com.liumapp.demo.draw.signature.service.queue.pattern.ConvertDocPattern;
 import com.liumapp.demo.draw.signature.service.queue.pattern.ConvertPdfToPicPattern;
 import com.liumapp.demo.draw.signature.service.queue.pattern.QueueJobErrorInfoPattern;
@@ -49,9 +50,9 @@ public class ConvertPdfToPicConsumer {
             ConvertingResultSocketServer.sendStatusMessage(responseJson(convertPdfToPicPattern), convertPdfToPicPattern.getConvertId());
         } catch (Exception e) {
             //转换失败
-            e.printStackTrace();
+            logger.error(e.getMessage());
             queueJobErrorInfoPattern.setServiceName(ConverterConsumer.class.toString());
-            queueJobErrorInfoPattern.setErrorDesc("handle doc convert failed!");
+            queueJobErrorInfoPattern.setErrorDesc("handle pic convert failed!");
             queueJobErrorInfoPattern.setInfo(jsonPattern);
             queueJobErrorInfoPublisher.send(JSON.toJSONString(queueJobErrorInfoPattern));
         }
@@ -61,6 +62,9 @@ public class ConvertPdfToPicConsumer {
         JSONObject object = new JSONObject();
         object.put("picNames", convertPdfToPicPattern.getSaveName());
         object.put("picNumbers", convertPdfToPicPattern.getPicNumbers());
+        object.put("index", convertPdfToPicPattern.getFileIndex());
+        object.put("savename", convertPdfToPicPattern.getSaveName());
+        object.put("status", ConvertConfig.ConvertStatus.CONVERTED_SUCCESS);
         return object;
     }
 

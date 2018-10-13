@@ -43,10 +43,8 @@ public class ConverterConsumer {
         ConvertDocPattern docPattern = JSON.parseObject(jsonPattern, ConvertDocPattern.class);
         logger.info("convert job begin , doc path is : " + docPattern.getDocPath());
         try {
-            Thread.sleep(1500);
             doc2PDF.doc2pdf(docPattern.getPdfPath() + "/" + docPattern.getSaveName(), docPattern.getDocPath() + "/" + docPattern.getOriginalName());
-            convertPdfToPicPublisher.send(JSON.toJSONString(responseJson(docPattern)));
-//            ConvertingResultSocketServer.sendStatusMessage(responseJson(docPattern), docPattern.getConvertId());
+            convertPdfToPicPublisher.send(JSON.toJSONString(docPattern));
         } catch (Exception e) {
             logger.info(e.getMessage());
             // send msg to convert doc result that convert failed.
@@ -55,14 +53,6 @@ public class ConverterConsumer {
             queueJobErrorInfoPattern.setInfo(jsonPattern);
             queueJobErrorInfoPublisher.send(JSON.toJSONString(queueJobErrorInfoPattern));
         }
-    }
-
-    private JSONObject responseJson (ConvertDocPattern docPattern) {
-        JSONObject object = new JSONObject();
-        object.put("index", docPattern.getFileIndex());
-        object.put("savename", docPattern.getSaveName());
-        object.put("status", ConvertConfig.ConvertStatus.CONVERTED_SUCCESS);
-        return object;
     }
 
 }
