@@ -101,10 +101,14 @@ export default {
           if (data.status == status.CONVERTED_SUCCESS) {
             _vue.tableData[key].savename = data.savename;
             _vue.tableData[key].status = status.CONVERTED_SUCCESS;
-            this.$Message.success("convert success , the file savename is : " + data.savename);
+            _vue.tableData[key].picNumbers = data.picNumbers;
+            _vue.tableData[key].picNames = data.picNames;
+            this.$Message.success("convert success , the file savename is : " + data.savename + " and converted " + data.picNumbers + " pics");
           } else {
             _vue.tableData[key].savename = data.savename;
             _vue.tableData[key].status = status.CONVERTED_FAILD;
+            _vue.tableData[key].picNumbers = data.picNumbers;
+            _vue.tableData[key].picNames = data.picNames;
             this.$Message.error("convert failed");
           }
           _vue.$store.dispatch('updateDoc', _vue.tableData[key], key);
@@ -119,6 +123,7 @@ export default {
     },
     getDrawButton (h, row) {
       let _vue = this;
+      _vue.$store.dispatch('choiceDocToDraw', row._index);
       return h('Button', {
         props: {
           type: 'primary',
