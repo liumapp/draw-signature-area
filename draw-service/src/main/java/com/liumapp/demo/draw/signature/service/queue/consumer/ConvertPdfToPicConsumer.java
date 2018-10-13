@@ -60,7 +60,7 @@ public class ConvertPdfToPicConsumer {
 
     private JSONObject responseJson (ConvertPdfToPicPattern convertPdfToPicPattern) {
         JSONObject object = new JSONObject();
-        object.put("picNames", JSON.toJSONString(convertPdfToPicPattern.getSaveName()));
+        object.put("picNames", JSON.toJSONString(convertPdfToPicPattern.getPicNames()));
         object.put("picNumbers", convertPdfToPicPattern.getPicNumbers());
         object.put("index", convertPdfToPicPattern.getFileIndex());
         object.put("savename", convertPdfToPicPattern.getSaveName());
