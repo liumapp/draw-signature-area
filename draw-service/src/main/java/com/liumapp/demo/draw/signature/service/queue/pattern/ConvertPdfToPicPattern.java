@@ -17,6 +17,17 @@ public class ConvertPdfToPicPattern extends ConvertDocPattern {
 
     private LinkedList<String> picNames;
 
+    private int picNumbers;
+
+    public ConvertPdfToPicPattern() {
+    }
+
+    public ConvertPdfToPicPattern(Integer fileIndex, Integer convertId, String docPath, String originalName, String pdfPath, String saveName, LinkedList<String> picNames, int picNumbers) {
+        super(fileIndex, convertId, docPath, originalName, pdfPath, saveName);
+        this.picNames = picNames;
+        this.picNumbers = picNumbers;
+    }
+
     public LinkedList<String> getPicNames() {
         return picNames;
     }
@@ -26,4 +37,12 @@ public class ConvertPdfToPicPattern extends ConvertDocPattern {
         return this;
     }
 
+    public int getPicNumbers() {
+        return picNumbers;
+    }
+
+    public ConvertPdfToPicPattern setPicNumbers(int picNumbers) {
+        this.picNumbers = picNumbers;
+        return this;
+    }
 }

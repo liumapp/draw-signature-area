@@ -3,11 +3,9 @@ package com.liumapp.demo.draw.signature.service.queue.consumer;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.liumapp.convert.img.service.AllPageConverter;
-import com.liumapp.demo.draw.signature.service.config.ConvertConfig;
 import com.liumapp.demo.draw.signature.service.queue.pattern.ConvertDocPattern;
 import com.liumapp.demo.draw.signature.service.queue.pattern.ConvertPdfToPicPattern;
 import com.liumapp.demo.draw.signature.service.queue.pattern.QueueJobErrorInfoPattern;
-import com.liumapp.demo.draw.signature.service.queue.publisher.service.ConvertPdfToPicPublisher;
 import com.liumapp.demo.draw.signature.service.queue.publisher.service.QueueJobErrorInfoPublisher;
 import com.liumapp.demo.draw.signature.service.socket.ConvertingResultSocketServer;
 import com.liumapp.qtools.starter.springboot.file.FileManager;
@@ -44,9 +42,11 @@ public class ConvertPdfToPicConsumer {
         AllPageConverter allPageConverter = new AllPageConverter();
         try {
             allPageConverter.setSourcePdfPath(convertPdfToPicPattern.getPdfPath());
-            allPageConverter.setOutputPath(fileManager.getSavePath() + "/pic/");
+            allPageConverter.setOutputPath(fileManager.getSavePath() + "/../pic/");
             allPageConverter.convert();
             convertPdfToPicPattern.setPicNames(allPageConverter.getSavenames());
+            convertPdfToPicPattern.setPicNumbers(allPageConverter.getSavenames().size());
+            ConvertingResultSocketServer.sendStatusMessage(responseJson(convertPdfToPicPattern), convertPdfToPicPattern.getConvertId());
         } catch (Exception e) {
             //转换失败
             e.printStackTrace();
@@ -57,10 +57,10 @@ public class ConvertPdfToPicConsumer {
         }
     }
 
-    private JSONObject responseJson (ConvertDocPattern docPattern) {
+    private JSONObject responseJson (ConvertPdfToPicPattern convertPdfToPicPattern) {
         JSONObject object = new JSONObject();
-        object.put("picNames", docPattern.getSaveName());
-        object.put("picNumbers", 0);
+        object.put("picNames", convertPdfToPicPattern.getSaveName());
+        object.put("picNumbers", convertPdfToPicPattern.getPicNumbers());
         return object;
     }
 
