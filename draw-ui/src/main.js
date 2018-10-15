@@ -6,9 +6,6 @@ import router from './router'
 import store from './store'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
-import deformation from 'deformation'
-
-Vue.component('Deformation', deformation)
 
 Vue.config.productionTip = false
 Vue.use(iView)
