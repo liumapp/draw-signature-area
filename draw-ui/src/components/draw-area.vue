@@ -17,6 +17,10 @@
         <p>Hello! I'm a flexible component. You can drag me around and you can resize me.<br>
           X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>
       </Deformation>
+      <Deformation :w="100" :h="100" v-on:dragging="onDrag" v-on:resizing="onResize" :parent="true">
+        <p>Hello! I'm a flexible component. You can drag me around and you can resize me.<br>
+          X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>
+      </Deformation>
     </div>
     <Col span="8" offset="8">
       this is draw area
