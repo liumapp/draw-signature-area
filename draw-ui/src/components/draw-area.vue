@@ -21,20 +21,30 @@
     <Button type="default" @click="back">返回</Button>
     </Col>
     <Col span="2">
-    <Button type="primary" @click="submitPic">提交</Button>
+    <Button type="primary" @click="">提交</Button>
     </Col>
   </Row>
 </div>
 </template>
 <script>
+import testData from '@/column/DrawData';
+
 export default {
   name: 'drawArea',
+  data: function () {
+    return {
+      testData: {}
+    }
+  },
+  created () {
+    this.initTestData();
+  },
   methods: {
     back () {
       this.$emit('prev');
     },
     initTestData () {
-      
+      this.testData = testData;
     }
   }
 }

@@ -1,0 +1,20 @@
+/**
+ * @file DrawData.js
+ * @author liumapp
+ * @email liumapp.com@gmail.com
+ * @homepage http://www.liumapp.com
+ * @date 2018/10/15
+ */
+
+const testDrawData = {
+
+  convertId: "71757",
+  filename:"test.doc",
+  picNames: ["1539584587821640.png","1539584588122714.png","1539584588397629.png","153958458863511.png","1539584588894209.png","1539584589346793.png","1539584589809459.png","1539584590271299.png","1539584590670143.png","15395845910457.png","1539584591392277.png","1539584591709555.png","1539584592039903.png","153958459237798.png","1539584592710727.png","1539584593067356.png","1539584593471713.png","1539584593774898.png","1539584594065660.png","1539584594426508.png","1539584594776833.png","1539584595125740.png","1539584595440418.png"],
+  picNumbers:23,
+  savename:"1539584583491.msword.pdf",
+  status:1
+
+};
+
+export default testDrawData;
