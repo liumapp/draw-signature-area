@@ -32,6 +32,9 @@ export default {
   methods: {
     back () {
       this.$emit('prev');
+    },
+    initTestData () {
+      
     }
   }
 }
