@@ -84,8 +84,7 @@ export default {
       this.y = y
     },
     onChangePage: function (pages) {
-      this.currentPic = util.ajaxUrl + "/resource/getPic?filename=" + this.testData.picNames[pages];
-      console.log(this.currentPic);
+      this.currentPic = util.ajaxUrl + "/resource/getPic?filename=" + this.testData.picNames[--pages];
     }
   }
 }
