@@ -12,17 +12,19 @@
 <div>
   <br>
   <Row>
-    <div class="picContainer">
-      <img :src="currentPic">
-      <sign-area :w="200" :h="100" v-on:dragging="onDrag" v-on:resizing="onResize" :parent="true" :resizable="false">
-          X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>
-      </sign-area>
-      <sign-area :w="200" :h="100" v-on:dragging="onDrag" v-on:resizing="onResize" :parent="true" :resizable="false">
-          X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>
-      </sign-area>
-    </div>
-    <Col span="8" offset="8">
-      this is draw area
+    <Col span="14" offset="5">
+      <div class="picContainer">
+        <img :src="currentPic">
+        <sign-area :w="200" :h="100" v-on:dragging="onDrag" v-on:resizing="onResize" :parent="true" :resizable="false">
+            X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>
+        </sign-area>
+        <sign-area :w="200" :h="100" v-on:dragging="onDrag" v-on:resizing="onResize" :parent="true" :resizable="false">
+            X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>
+        </sign-area>
+      </div>
+      <Col span="8" offset="8">
+        this is draw area
+      </Col>
     </Col>
   </Row>
   <Row>
@@ -80,12 +82,13 @@ export default {
 </script>
 <style lang="less">
   .picContainer {
-    height: 500px;
-    width: 500px;
+    height: 841.92px;
+    width: 595.32px;
     position: relative;
+    border: 1px solid gray;
     img {
-      width: 500px;
-      height: 500px;
+      height: 839.92px;
+      width: 593.32px;
     }
   }
 </style>
