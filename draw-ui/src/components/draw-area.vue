@@ -22,11 +22,15 @@
             X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>
         </sign-area>
       </div>
-      <Col span="8" offset="8">
-        this is draw area
-      </Col>
     </Col>
   </Row>
+  <br>
+  <Row>
+    <Col span="14" offset="5">
+      <Page :total="picNumbers" :page-size="1" show-elevator @on-change="onChangePage"></Page>
+    </Col>
+  </Row>
+  <br>
   <Row>
     <Col span="2" offset="14">
     <Button type="default" @click="back">返回</Button>
@@ -47,6 +51,7 @@ export default {
     return {
       testData: {},
       currentPic: '',
+      picNumbers: 0,
       width: 0,
       height: 0,
       x: 0,
@@ -66,6 +71,7 @@ export default {
     initTestData () {
       this.testData = testData;
       this.currentPic = util.ajaxUrl + "/resource/getPic?filename=" + this.testData.picNames[0];
+      this.picNumbers= this.testData.picNumbers;
     },
     onResize: function (x, y, width, height) {
       this.x = x
@@ -76,6 +82,10 @@ export default {
     onDrag: function (x, y) {
       this.x = x
       this.y = y
+    },
+    onChangePage: function (pages) {
+      this.currentPic = util.ajaxUrl + "/resource/getPic?filename=" + this.testData.picNames[pages];
+      console.log(this.currentPic);
     }
   }
 }
