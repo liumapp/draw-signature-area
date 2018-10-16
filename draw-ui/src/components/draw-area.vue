@@ -13,14 +13,12 @@
   <br>
   <Row>
     <div style="height: 500px; width: 500px; border: 1px solid red; position: relative;">
-      <Deformation :w="100" :h="100" v-on:dragging="onDrag" v-on:resizing="onResize" :parent="true">
-        <p>Hello! I'm a flexible component. You can drag me around and you can resize me.<br>
+      <sign-area :w="200" :h="100" v-on:dragging="onDrag" :parent="true" :resizable="false">
           X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>
-      </Deformation>
-      <Deformation :w="100" :h="100" v-on:dragging="onDrag" v-on:resizing="onResize" :parent="true">
-        <p>Hello! I'm a flexible component. You can drag me around and you can resize me.<br>
+      </sign-area>
+      <sign-area :w="200" :h="100" v-on:dragging="onDrag" :parent="true" :resizable="false">
           X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>
-      </Deformation>
+      </sign-area>
     </div>
     <Col span="8" offset="8">
       this is draw area
@@ -38,7 +36,7 @@
 </template>
 <script>
 import testData from '@/column/DrawData'
-import Deformation from 'deformation'
+import signArea from '@/lm-sign-area/'
 
 export default {
   name: 'drawArea',
@@ -52,7 +50,7 @@ export default {
     }
   },
   components: {
-    Deformation
+    signArea
   },
   created () {
     this.initTestData();
@@ -63,12 +61,6 @@ export default {
     },
     initTestData () {
       this.testData = testData;
-    },
-    onResize: function (x, y, width, height) {
-      this.x = x
-      this.y = y
-      this.width = width
-      this.height = height
     },
     onDrag: function (x, y) {
       this.x = x

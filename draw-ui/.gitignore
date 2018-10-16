@@ -14,3 +14,7 @@ yarn-error.log*
 *.sln
 
 release-npm-module
+
+lm-sign-area
+
+
