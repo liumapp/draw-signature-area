@@ -12,11 +12,12 @@
 <div>
   <br>
   <Row>
-    <div style="height: 500px; width: 500px; border: 1px solid red; position: relative;">
-      <sign-area :w="200" :h="100" v-on:dragging="onDrag" :parent="true" :resizable="false">
+    <div class="picContainer">
+      <img :src="currentPic">
+      <sign-area :w="200" :h="100" v-on:dragging="onDrag" v-on:resizing="onResize" :parent="true" :resizable="false">
           X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>
       </sign-area>
-      <sign-area :w="200" :h="100" v-on:dragging="onDrag" :parent="true" :resizable="false">
+      <sign-area :w="200" :h="100" v-on:dragging="onDrag" v-on:resizing="onResize" :parent="true" :resizable="false">
           X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>
       </sign-area>
     </div>
@@ -43,6 +44,7 @@ export default {
   data: function () {
     return {
       testData: {},
+      currentPic: '',
       width: 0,
       height: 0,
       x: 0,
@@ -62,6 +64,12 @@ export default {
     initTestData () {
       this.testData = testData;
     },
+    onResize: function (x, y, width, height) {
+      this.x = x
+      this.y = y
+      this.width = width
+      this.height = height
+    },
     onDrag: function (x, y) {
       this.x = x
       this.y = y
@@ -69,3 +77,11 @@ export default {
   }
 }
 </script>
+<style lang="less">
+  .picContainer {
+    height: 500px;
+    width: 500px;
+    border: 1px solid red;
+    position: relative;
+  }
+</style>
