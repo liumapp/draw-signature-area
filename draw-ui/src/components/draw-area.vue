@@ -38,7 +38,7 @@
 <script>
 import testData from '@/column/DrawData'
 import signArea from '@/lm-sign-area/'
-
+import util from '@/libs/util'
 export default {
   name: 'drawArea',
   data: function () {
@@ -63,6 +63,7 @@ export default {
     },
     initTestData () {
       this.testData = testData;
+      this.currentPic = util.ajaxUrl + "/resource/getPic?filename=" + this.testData.picNames[0];
     },
     onResize: function (x, y, width, height) {
       this.x = x
@@ -81,7 +82,10 @@ export default {
   .picContainer {
     height: 500px;
     width: 500px;
-    border: 1px solid red;
     position: relative;
+    img {
+      width: 500px;
+      height: 500px;
+    }
   }
 </style>

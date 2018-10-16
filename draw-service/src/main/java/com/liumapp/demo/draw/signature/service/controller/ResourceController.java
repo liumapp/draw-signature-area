@@ -1,6 +1,12 @@
 package com.liumapp.demo.draw.signature.service.controller;
 
+import com.liumapp.qtools.starter.springboot.file.FileManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -15,6 +21,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("resource")
 public class ResourceController {
 
+    @Autowired
+    private ResourceLoader resourceLoader;
 
+    @Autowired
+    private FileManager fileManager;
+
+    @RequestMapping(value = "/getPic", produces="image/*")
+    @ResponseBody
+    public ResponseEntity<?> getImg (@RequestParam String filename) {
+        return ResponseEntity.ok(resourceLoader.getResource("file:" + fileManager.getSavePath() + "/../pic/" + filename));
+    }
 
 }
