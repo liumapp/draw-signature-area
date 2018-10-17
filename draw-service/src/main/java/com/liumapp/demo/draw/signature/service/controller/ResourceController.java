@@ -1,6 +1,8 @@
 package com.liumapp.demo.draw.signature.service.controller;
 
 import com.liumapp.qtools.starter.springboot.file.FileManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.ResponseEntity;
@@ -27,10 +29,17 @@ public class ResourceController {
     @Autowired
     private FileManager fileManager;
 
-    @RequestMapping(value = "/getPic", produces="image/*")
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    /**
+     * if set produces="image/*" , firefox can not resolve pic , and will get a 406 response error
+     */
+    @RequestMapping(value = "/getPic", produces="*")
     @ResponseBody
     public ResponseEntity<?> getImg (@RequestParam String filename) {
-        return ResponseEntity.ok(resourceLoader.getResource("file:" + fileManager.getSavePath() + "/../pic/" + filename));
+        String path = fileManager.getSavePath() + "/../pic/" + filename;
+        logger.info("request file : " + path);
+        return ResponseEntity.ok(resourceLoader.getResource("file:" + path));
     }
 
 }
