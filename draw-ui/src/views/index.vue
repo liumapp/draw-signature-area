@@ -11,10 +11,10 @@
       <Col span="18" offset="3">
       <Card>
         <Steps :current="current">
-          <Step title="上传doc文档" content="form表单上传一个待转换的doc文档"></Step>
-          <Step title="转换过程中" content="通过socket等待转换结果，成功后获取转换好的pdf文档"></Step>
-          <Step title="绘制区域" content="后端转换为Pic后获取文件，并在其上绘制200px*100px矩形"></Step>
-          <Step title="下载" content="绘制成功后供后端处理，在指定的区域上附加一张图片后下载最终PDF文件"></Step>
+          <Step title="上传合同文档" content="form表单上传一个待转换的doc文档"></Step>
+          <Step title="设置签署人" content="通过socket等待转换结果，成功后获取转换好的pdf文档"></Step>
+          <Step title="绘制签署区域" content="后端转换为Pic后获取文件，并在其上绘制200px*100px矩形"></Step>
+          <Step title="下载电子合同" content="绘制成功后供后端处理，在指定的区域上附加一张图片后下载最终PDF文件"></Step>
         </Steps>
         <doc-upload v-if="current == 0" @next="nextStep" :convertId="convertId"></doc-upload>
         <converting v-else-if="current == 1" @next="nextStep" :convertId="convertId"></converting>

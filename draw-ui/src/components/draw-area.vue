@@ -15,11 +15,12 @@
     <Col span="14" offset="5">
       <div class="picContainer">
         <img :src="currentPic">
-        <sign-area :w="200" :h="100" :border="true" v-on:dragging="onDrag" v-on:resizing="onResize" :parent="true" :resizable="false">
-            X: {{ x }} / Y: {{ y }}</p>
-        </sign-area>
-        <sign-area :w="200" :h="100" v-on:dragging="onDrag" v-on:resizing="onResize" :parent="true" :resizable="false">
-            X: {{ x }} / Y: {{ y }}</p>
+        <sign-area v-for="(signer, index) in signers" :index="index" :w="200" :h="100" :x="signer.x" :y="signer.y" v-on:dragging="onDrag" :parent="true" :resizable="false">
+          {{ signer.name }}签署区域
+          <br>
+          X is {{ signer.x }}
+          <br>
+          Y is {{ signer.y }}
         </sign-area>
       </div>
     </Col>
@@ -52,9 +53,23 @@ export default {
       testData: {},
       currentPic: '',
       picNumbers: 0,
-      signerNumber: 3,
-      x: 0,
-      y: 0
+      signers: [
+        {
+          name: "张三",
+          x: 75,
+          y: 500
+        },
+        {
+          name: "李四",
+          x: 325,
+          y: 500
+        },
+        {
+          name: "王五",
+          x: 75,
+          y: 650
+        }
+      ]
     }
   },
   components: {
@@ -72,9 +87,9 @@ export default {
       this.currentPic = util.ajaxUrl + "/resource/getPic?filename=" + this.testData.picNames[0];
       this.picNumbers= this.testData.picNumbers;
     },
-    onDrag: function (x, y) {
-      this.x = x
-      this.y = y
+    onDrag: function (x, y, index) {
+      this.signers[index].x = x;
+      this.signers[index].y = y;
     },
     onChangePage: function (pages) {
       this.currentPic = util.ajaxUrl + "/resource/getPic?filename=" + this.testData.picNames[--pages];
