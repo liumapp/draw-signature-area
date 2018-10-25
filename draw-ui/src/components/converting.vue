@@ -33,8 +33,8 @@
         </div>
         <div class="spin-container">
           <div>
-            <Table>
-
+            <Table stripe :ref="signersTableRefs" :columns="signersColumn" :data="signersTableData">
+              <div slot="footer">bbbbbbbbbbbb</div>
             </Table>
           </div>
         </div>
@@ -42,16 +42,16 @@
           <br>
           <Button type="default" @click="getBack">返回</Button>
         </div>
-
       </Col>
     </Row>
   </div>
-
 </template>
 <script>
 import status from '@/libs/status'
 import util from '@/libs/util'
 import resultColumn from '@/column/resultsColumn'
+import signersColumn from '@/column/signersColumn'
+
 export default {
   name: 'converting',
   props: [
@@ -60,9 +60,15 @@ export default {
   data () {
     return {
       ws: null,
+      //转换合同表格
       tableRefs: 'convertingResultTable',
       tableColumn: [],
-      tableData: []
+      tableData: [],
+
+      //联系人表格
+      signersTableRefs: 'signersTable',
+      signersColumn: [],
+      signersTableData: []
     };
   },
   created () {
@@ -79,6 +85,7 @@ export default {
     initTable () {
       this.tableColumn = resultColumn.tableResultsColumn;
       this.tableData = this.$store.getters.docs;
+      this.signersColumn = signersColumn.tableSignersColumn;
       this.tableColumn.forEach (item => {
         if (item.handle) {
           item.render = (h, params) => {

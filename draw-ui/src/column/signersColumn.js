@@ -46,11 +46,12 @@ export const tableSignersColumn = [
       }, text);
     }
   }
+
 ];
 
-const resultColumn = {
+const signersColumn = {
   tableSignersColumn: tableSignersColumn
 };
 
-export default resultColumn;
+export default signersColumn;
 
