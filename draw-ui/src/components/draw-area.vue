@@ -15,11 +15,11 @@
     <Col span="14" offset="5">
       <div class="picContainer">
         <img :src="currentPic">
-        <sign-area :w="200" :h="100" v-on:dragging="onDrag" v-on:resizing="onResize" :parent="true" :resizable="false">
-            X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>
+        <sign-area :w="200" :h="100" :border="true" v-on:dragging="onDrag" v-on:resizing="onResize" :parent="true" :resizable="false">
+            X: {{ x }} / Y: {{ y }}</p>
         </sign-area>
         <sign-area :w="200" :h="100" v-on:dragging="onDrag" v-on:resizing="onResize" :parent="true" :resizable="false">
-            X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>
+            X: {{ x }} / Y: {{ y }}</p>
         </sign-area>
       </div>
     </Col>
@@ -52,8 +52,7 @@ export default {
       testData: {},
       currentPic: '',
       picNumbers: 0,
-      width: 0,
-      height: 0,
+      signerNumber: 3,
       x: 0,
       y: 0
     }
@@ -72,12 +71,6 @@ export default {
       this.testData = testData;
       this.currentPic = util.ajaxUrl + "/resource/getPic?filename=" + this.testData.picNames[0];
       this.picNumbers= this.testData.picNumbers;
-    },
-    onResize: function (x, y, width, height) {
-      this.x = x
-      this.y = y
-      this.width = width
-      this.height = height
     },
     onDrag: function (x, y) {
       this.x = x
