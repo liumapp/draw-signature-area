@@ -10,7 +10,6 @@
     display: inline-block;
     text-align: center;
     width: 500px;
-    height: 225px;
     position: relative;
     border: none;
   }
@@ -19,16 +18,31 @@
   <div>
     <Row>
       <Col span="12" offset="6">
+        <br>
+        <div>
+          文档列表
+        </div>
         <div class="spin-container">
-          <br>
           <div>
             <Table stripe :ref="tableRefs" :columns="tableColumn" :data="tableData"></Table>
           </div>
-          <div class="spin-content">
-            <br>
-            <Button type="default" @click="getBack">返回首页</Button>
+        </div>
+        <br>
+        <div>
+          签署人列表
+        </div>
+        <div class="spin-container">
+          <div>
+            <Table>
+
+            </Table>
           </div>
         </div>
+        <div class="spin-content">
+          <br>
+          <Button type="default" @click="getBack">返回</Button>
+        </div>
+
       </Col>
     </Row>
   </div>
