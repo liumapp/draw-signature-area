@@ -43,7 +43,7 @@
 </template>
 <script>
 import testData from '@/column/DrawData'
-import signArea from '@/lm-sign-area/'
+import signArea from '@/dragging-elements/'
 import util from '@/libs/util'
 export default {
   name: 'drawArea',
