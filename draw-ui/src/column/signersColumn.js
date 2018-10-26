@@ -45,8 +45,12 @@ export const tableSignersColumn = [
         }
       }, text);
     }
+  },
+  {
+    title: '操作',
+    align: 'center',
+    handle: true
   }
-
 ];
 
 const signersColumn = {

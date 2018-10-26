@@ -34,7 +34,9 @@
         <div class="spin-container">
           <div>
             <Table stripe :ref="signersTableRefs" :columns="signersColumn" :data="signersTableData">
-              <div slot="footer">bbbbbbbbbbbb</div>
+              <div slot="footer" align="left" style="padding-left: 15px;">
+                <Button type="primary">添加签署人</Button>
+              </div>
             </Table>
           </div>
         </div>
